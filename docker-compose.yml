@@ -1,0 +1,136 @@
+services:
+
+  # PostgreSQL (for Keycloak)
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_USER: neelesh
+      POSTGRES_PASSWORD: neelesh
+      POSTGRES_DB: keycloak
+    volumes:
+      - postgres:/var/lib/postgresql/data  
+    ports:
+      - "5431:5432"
+    networks:
+      - backend
+    restart: unless-stopped  
+
+  # MySQL (main DB for Event service)
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: neelesh
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: neelesh
+      MYSQL_PASSWORD: neelesh
+    volumes:
+      - mysql:/var/lib/mysql   
+    ports:
+      - "3307:3306"
+    networks:
+      - backend
+
+  # MySQL (separate for payment service)
+  mysql-payment:
+    image: mysql:8.0
+    container_name: mysql-payment
+    environment:
+      MYSQL_ROOT_PASSWORD: paymentRootPass
+      MYSQL_DATABASE: paymentdb
+      MYSQL_USER: paymentUser
+      MYSQL_PASSWORD: paymentPass
+    volumes:
+      - mysql-payment-data:/var/lib/mysql
+    ports:
+      - "3308:3306"
+    networks:
+      - backend
+
+  # MongoDB
+  mongodb:
+    image: mongo:6
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: neelesh
+      MONGO_INITDB_ROOT_PASSWORD: neelesh
+    ports:
+      - "27016:27017"
+    volumes:
+      - mongo:/data  
+    networks:
+      - backend
+
+  # Zookeeper
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "22181:2181"
+    networks:
+      - backend
+
+  # Kafka
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_SOCKET_REQUEST_MAX_BYTES: 200000000
+    networks:
+      - backend
+
+  # Keycloak
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak
+    command: start-dev
+    environment:
+      KEYCLOAK_ADMIN: neelesh
+      KEYCLOAK_ADMIN_PASSWORD: neelesh
+      KC_DB: postgres
+      KC_DB_URL_HOST: postgres
+      KC_DB_PORT: 5432
+      KC_DB_USERNAME: neelesh
+      KC_DB_PASSWORD: neelesh
+      KC_DB_DATABASE: keycloak
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+  # Mail Server (MailDev - for local development/testing)
+  maildev:
+    image: maildev/maildev
+    container_name: maildev
+    ports:
+      - "1080:1080"   # Web UI
+      - "1025:1025"   # SMTP
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  postgres:
+  mysql:
+  mysql-payment-data:
+  mongo:

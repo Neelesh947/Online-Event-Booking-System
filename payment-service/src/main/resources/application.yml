@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: Payment-Service
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+  datasource:
+    url: jdbc:mysql://localhost:3308/paymentdb   # Use your payment DB
+    username: paymentUser                        # Use your payment DB user
+    password: paymentPass                    # Use your payment DB password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update                            # or validate, based on your needs
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+server:
+  port: 1237  # Different port than shopping service
+
+keycloak:
+  initial:
+    jwks:
+      url: http://localhost:8080/realms/payment-realm/protocol/openid-connect/certs  # Update for payment realm
+  final:
+    jwks:
+      url: /protocol/openid-connect/certs
+
+razorpay:
+  key-id: rzp_test_mezMP44ifD2Xfv
+  key-secret: syqOv6V7dQbVuwWlHaXiPFgg
+
+webhook:
+  secret: neelesh

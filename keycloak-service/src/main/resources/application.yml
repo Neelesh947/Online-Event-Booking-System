@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: keycloak-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.type.mapping:
+          loginConfirmation: in.neelesh.online.shopping.records.LoginConfirmation
+
+server:
+  port: 1234						
+keycloak:
+  resource: event
+  credentials:
+    secret: GSxDpWzkgOJ9e6qzGKAitqv5xJ0jTonN
+  token-url: http://localhost:8080/realms/{0}/protocol/openid-connect/token
+  admin-client: admin-cli
+  admin-credentials:
+    username: neelesh
+    password: neelesh
+
+  assign-role-url: http://localhost:8080/admin/realms/{0}/users/{1}/role-mappings/realm
+  create-role-url: http://localhost:8080/admin/realms/{0}/roles
+  create-user-url: http://localhost:8080/admin/realms/{0}/users
+  delete-role-url: http://localhost:8080/admin/realms/{0}/roles/{1}
+  delete-user-url: http://localhost:8080/admin/realms/{0}/users/{1}
+  execute-actions-email-url: http://localhost:8080/admin/realms/{0}/users/{1}/execute-actions-email
+  get-role-by-name-url: http://localhost:8080/admin/realms/{0}/roles/{1}
+  get-roles-url: http://localhost:8080/admin/realms/{0}/roles
+  get-user-by-id-url: http://localhost:8080/admin/realms/{0}/users/{1}
+  get-userid-by-username-url: http://localhost:8080/admin/realms/{0}/users?username={1}
+  get-user-roles-url: http://localhost:8080/admin/realms/{0}/users/{1}/role-mappings/realm
+  get-user-sessions-url: http://localhost:8080/admin/realms/{0}/users/{1}/sessions
+  get-users-by-role-url: http://localhost:8080/admin/realms/{0}/roles/{1}/users
+  logout-url: http://localhost:8080/realms/{0}/protocol/openid-connect/logout
+  logout-user-url: http://localhost:8080/admin/realms/{0}/users/{1}/logout
+  remove-role-from-user-url: http://localhost:8080/admin/realms/{0}/users/{1}/role-mappings/realm
+  reset-password-url: http://localhost:8080/admin/realms/{0}/users/{1}/reset-password
+  search-user-by-email-url: http://localhost:8080/admin/realms/{0}/users?email={1}&exact=true
+  search-user-by-username-and-email-url: http://localhost:8080/admin/realms/{0}/users?username={1}
+  search-user-by-username-url: http://localhost:8080/admin/realms/{0}/users?username={1}&exact=true
+  send-verify-email-url: http://localhost:8080/admin/realms/{0}/users/{1}/send-verify-email
+  update-user-url: http://localhost:8080/admin/realms/{0}/users/{1}
+  user-name-url: http://localhost:8080/admin/realms/{0}/users?username={1}&exact=true
