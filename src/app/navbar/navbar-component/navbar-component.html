@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" class="navbar">
+  <span class="logo">🎫 Event Booking</span>
+
+  <span class="spacer"></span>
+
+  <a mat-button routerLink="/">Home</a>
+  <a mat-button routerLink="#">Events</a>
+
+  <ng-container *ngIf="isLoggedIn()">
+    <a mat-button *ngIf="authService.hasRole('USER')" routerLink="/my-bookings">My Bookings</a>
+    <a mat-button *ngIf="authService.hasRole('ORGANIZER')" routerLink="/organizer/events">My Events</a>
+    <a mat-button *ngIf="authService.hasRole('ADMIN')" routerLink="/admin">Admin Panel</a>
+    <button mat-button (click)="logout()">Logout</button>
+  </ng-container>
+
+  <ng-container *ngIf="!isLoggedIn()">
+    <a mat-button routerLink="login">Login</a>
+  </ng-container>
+</mat-toolbar>

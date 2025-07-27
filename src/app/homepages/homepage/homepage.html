@@ -1,0 +1,40 @@
+<section class="hero mat-elevation-z4">
+  <div class="hero-content">
+    <h1>🎉 Discover & Book Events Near You</h1>
+    <p>Join concerts, workshops, and meetups. Book your seat in seconds!</p>
+    <a mat-raised-button color="primary" routerLink="login">Login / Sign Up</a>
+  </div>
+</section>
+
+<section class="events">
+  <h2 class="section-title">🗓️ Upcoming Events</h2>
+  <div class="event-grid">
+    <mat-card class="event-card" *ngFor="let event of upcomingEvents">
+      <mat-card-title>{{ event.title }}</mat-card-title>
+      <mat-card-content>
+        <p>{{ event.date }} — {{ event.location }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+<section class="benefits">
+  <h2 class="section-title">Why Join?</h2>
+  <div class="benefit-grid">
+    <mat-card class="benefit-card" *ngFor="let benefit of benefits">
+      <mat-card-content>
+        <p>{{ benefit }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+<section class="how-it-works">
+  <h2 class="section-title">How It Works</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let step of howItWorks">
+      <mat-icon matListIcon>check_circle</mat-icon>
+      <p matLine>{{ step }}</p>
+    </mat-list-item>
+  </mat-list>
+</section>

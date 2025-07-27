@@ -3,18 +3,50 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
+import { NavbarComponent } from './navbar/navbar-component/navbar-component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { Homepage } from './homepages/homepage/homepage';
+import { Loginpage } from './homepages/loginpage/loginpage';
+import { EventPage } from './homepages/event-page/event-page';
+import { Register } from './homepages/register/register';
+import { MatList, MatListItem } from '@angular/material/list';
+import { MatIcon } from '@angular/material/icon';
+import { MatCard, MatCardContent, MatCardModule, MatCardTitle } from '@angular/material/card';
+import { MatError, MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatInput, MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatOption } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
+import { HTTP_INTERCEPTORS, HttpClientModule, withInterceptors } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth-interceptor';
 
 @NgModule({
   declarations: [
-    App
+    App,
+    NavbarComponent,
+    Homepage,
+    Loginpage,
+    EventPage,
+    Register
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    BrowserModule, ReactiveFormsModule,
+    AppRoutingModule, MatOption, MatFormFieldModule, 
+    MatToolbarModule, MatInputModule, MatSelectModule, MatCardModule,
+    MatButtonModule, HttpClientModule,
+    MatList, MatError, FormsModule,
+    MatIcon, MatLabel, MatFormField, MatInput,
+    MatListItem, MatCard, MatCardTitle, MatCardContent
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideZonelessChangeDetection()
+    provideZonelessChangeDetection(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [App]
 })
