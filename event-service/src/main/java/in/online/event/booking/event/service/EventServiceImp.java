@@ -3,6 +3,7 @@ package in.online.event.booking.event.service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
@@ -135,6 +136,28 @@ public class EventServiceImp implements EventService {
 				.orElseThrow(() -> new ResourceNotFoundException("Event not found with ID: " + eventId));
 		event.setAvailableTickets(event.getAvailableTickets() + count);
 		eventRepository.save(event);
+	}
+
+	@Override
+	public List<EventResponse> getEventByOrganizerId(String organizerId, String realm) {
+		List<Event> events = eventRepository.findByOrganizerId(organizerId);
+		if (events.isEmpty()) {
+	        throw new ResourceNotFoundException("No events found for organizer with ID: " + organizerId);
+	    }
+		return events.stream().map(this :: mapToEventResponse).collect(Collectors.toList());
+	}
+	
+	private EventResponse mapToEventResponse(Event event) {
+		EventResponse response = new EventResponse();
+		response.setId(event.getId());
+	    response.setTitle(event.getTitle());
+	    response.setDescription(event.getDescription());
+	    response.setStartTime(event.getStartTime());
+	    response.setEndTime(event.getEndTime());
+	    response.setLocation(event.getLocation());
+	    response.setCapactity(event.getTotalTickets());
+	    response.setCategoryName(event.getCategory().getName());
+		return response;
 	}
 
 }

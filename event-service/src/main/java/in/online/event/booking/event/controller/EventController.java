@@ -1,5 +1,6 @@
 package in.online.event.booking.event.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -133,5 +134,19 @@ public class EventController {
 			@RequestParam("count") int count) {
 		eventService.increaseTickets(realm, eventId, count);
 		return ResponseEntity.ok().build();
+	}
+
+	/**
+	 * Get the list of event for the Organizers
+	 * 
+	 * @param realm
+	 * @return List of events created by the organizer.
+	 */
+	@GetMapping("/organizer")
+	@PreAuthorize("hasRole('ORGANIZER')")
+	public ResponseEntity<?> fetchTheListOfOrganizerEvents(@PathVariable String realm) {
+		String organizerId = SecurityUtils.getCurrentUserIdSupplier.get();
+		List<EventResponse> response = this.eventService.getEventByOrganizerId(organizerId, realm);
+		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 }

@@ -28,7 +28,7 @@ public interface EventRepository extends JpaRepository<Event, String>{
     
     @Query("SELECT e FROM Event e WHERE " +
             "(:search IS NULL OR LOWER(e.title) LIKE LOWER(CONCAT('%', :search, '%')) " +
-            "OR LOWER(e.description) LIKE LOWER(CONCAT('%', :search, '%')) " +
+            "OR e.description LIKE CONCAT('%', :search, '%') " +
             "OR LOWER(e.location) LIKE LOWER(CONCAT('%', :search, '%'))) " +
             "AND (:categoryId IS NULL OR e.category.id = :categoryId) " +
             "AND (:from IS NULL OR e.startTime >= :from) " +

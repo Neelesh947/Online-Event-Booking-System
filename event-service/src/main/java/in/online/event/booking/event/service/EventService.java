@@ -1,5 +1,6 @@
 package in.online.event.booking.event.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -25,4 +26,6 @@ public interface EventService {
 	public void reduceTickets(String realm, String eventId, int count);
 
 	public void increaseTickets(String realm, String eventId, int count);
+
+	List<EventResponse> getEventByOrganizerId(String organizerId, String realm);
 }
