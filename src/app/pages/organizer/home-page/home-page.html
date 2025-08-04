@@ -1,0 +1,32 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1>🎫 Organizer Dashboard</h1>
+    <p>Welcome! Manage your events, categories, and reports below.</p>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="dashboard-card" (click)="navigateTo('organizer/create-event')">
+      <div class="icon">➕</div>
+      <h3>Create Event</h3>
+      <p>Add and manage event categories.</p>
+    </div>
+
+    <div class="dashboard-card" (click)="navigateTo('organizer/my-event')">
+      <div class="icon">📅</div>
+      <h3>My Events</h3>
+      <p>View, edit, or cancel events you've created.</p>
+    </div>
+
+    <div class="dashboard-card" (click)="navigateTo('registrations')">
+      <div class="icon">🧾</div>
+      <h3>Registrations</h3>
+      <p>Track attendees and booking status.</p>
+    </div>
+
+    <div class="dashboard-card" (click)="navigateTo('reports')">
+      <div class="icon">📊</div>
+      <h3>Reports</h3>
+      <p>Analyze event success metrics and trends.</p>
+    </div>
+  </div>
+</div>

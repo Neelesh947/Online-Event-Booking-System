@@ -1,0 +1,90 @@
+/* Layout */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Header */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  color: #3f51b5;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+/* Card Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card Style */
+.dashboard-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(63, 81, 181, 0.15);
+  border-color: #c5cae9;
+}
+
+.dashboard-card h3 {
+  margin: 1rem 0 0.5rem;
+  color: #333;
+  font-size: 1.25rem;
+}
+
+.dashboard-card p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Icons */
+.icon {
+  font-size: 2.5rem;
+  color: #3f51b5;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Tweaks */
+@media (max-width: 600px) {
+  .dashboard-header h1 {
+    font-size: 2rem;
+  }
+
+  .dashboard-card {
+    padding: 1rem;
+  }
+}

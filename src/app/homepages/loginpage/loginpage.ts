@@ -32,8 +32,24 @@ export class Loginpage implements OnInit{
       next: res => {
           this.tokenService.setTokens(res.access_token, res.refresh_token);
           this.userActivityService.startTracking();
-          // this.router.navigate(['/dashboard']); // change as needed
-          console.log("login successfully" , res)
+
+          //now checking the roles from decoded token
+          const isSuperAdmin = this.authService.hasRole('super_admin');
+          const isOrganizer = this.authService.hasRole('organizer');
+          const isUser = this.authService.hasRole('user');
+
+          console.log("roles: -", isSuperAdmin, isOrganizer, isUser);
+
+          if(isSuperAdmin){
+            this.router.navigate(['/admin/dashboard']);
+          } else if(isOrganizer){
+            this.router.navigate(['/organizer/dashboard']);
+          } else if(isUser){
+            this.router.navigate(['/user/dashboard']);
+          } else{
+            alert("Unauthorized role");
+          }
+
         },
         error: err => alert('Login failed')
     })

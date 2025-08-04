@@ -20,6 +20,17 @@ import { MatOption } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { HTTP_INTERCEPTORS, HttpClientModule, withInterceptors } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth-interceptor';
+import { Dashboard } from './pages/super_admin/dashboard/dashboard';
+import { ComponentDashboard } from './pages/super_admin/component-dashboard/component-dashboard';
+import { CategoryCreateDashboard } from './pages/super_admin/category-create-dashboard/category-create-dashboard';
+import { EventList } from './pages/super_admin/event-list/event-list';
+import { HomePage } from './pages/organizer/home-page/home-page';
+import { CreateEvents } from './pages/organizer/create-events/create-events';
+import { MatDatepicker } from '@angular/material/datepicker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatTimepickerModule} from '@angular/material/timepicker';
+import { Myevents } from './pages/organizer/myevents/myevents';
 
 @NgModule({
   declarations: [
@@ -28,7 +39,14 @@ import { AuthInterceptor } from './services/auth-interceptor';
     Homepage,
     Loginpage,
     EventPage,
-    Register
+    Register,
+    Dashboard,
+    ComponentDashboard,
+    CategoryCreateDashboard,
+    EventList,
+    HomePage,
+    CreateEvents,
+    Myevents
   ],
   imports: [
     BrowserModule, ReactiveFormsModule,
@@ -37,7 +55,8 @@ import { AuthInterceptor } from './services/auth-interceptor';
     MatButtonModule, HttpClientModule,
     MatList, MatError, FormsModule,
     MatIcon, MatLabel, MatFormField, MatInput,
-    MatListItem, MatCard, MatCardTitle, MatCardContent
+    MatListItem, MatCard, MatCardTitle, MatCardContent, MatDatepicker,MatDatepickerModule,
+    MatNativeDateModule,MatTimepickerModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

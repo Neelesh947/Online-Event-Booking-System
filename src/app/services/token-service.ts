@@ -38,4 +38,9 @@ export class TokenService {
       return null;
     }
   }
+
+  getUsername():string {
+    const decoded = this.decodeAccessToken();
+    return decoded?.preferred_username;
+  }
 }

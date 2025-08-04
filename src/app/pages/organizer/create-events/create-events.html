@@ -1,0 +1,96 @@
+<div class="create-event-container mat-elevation-z4">
+  <h2>Create New Event</h2>
+
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <!-- Title -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" placeholder="Enter event title" required />
+      <mat-error *ngIf="eventForm.get('title')?.hasError('required')">Title is required</mat-error>
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" placeholder="Event description" rows="4"></textarea>
+    </mat-form-field>
+
+    <!-- Location -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Location</mat-label>
+      <input matInput formControlName="location" placeholder="Venue or city" />
+    </mat-form-field>
+
+    <!-- Start Date & Time -->
+    <div class="row">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" />
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Start Time</mat-label>
+        <input matInput [matTimepicker]="startTimePicker" formControlName="startTime" />
+        <mat-timepicker-toggle matSuffix [for]="startTimePicker"></mat-timepicker-toggle>
+        <mat-timepicker #startTimePicker></mat-timepicker>
+      </mat-form-field>
+    </div>
+
+    <!-- End Date & Time -->
+    <div class="row">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>End Date</mat-label>
+        <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" />
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>End Time</mat-label>
+        <input matInput [matTimepicker]="endTimePicker" formControlName="endTime" />
+        <mat-timepicker-toggle matSuffix [for]="endTimePicker"></mat-timepicker-toggle>
+        <mat-timepicker #endTimePicker></mat-timepicker>
+      </mat-form-field>
+    </div>
+
+    <!-- Ticket Info -->
+    <div class="row">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Total Tickets</mat-label>
+        <input matInput type="number" formControlName="totalTickets" min="1" />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Ticket Price</mat-label>
+      <input matInput type="number" formControlName="ticketPrice" min="30.00" step="0.50" />
+    </mat-form-field>
+
+    <!-- Category -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Image URL -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Image URL</mat-label>
+      <input matInput formControlName="imageUrl" placeholder="Paste an image URL" />
+    </mat-form-field>
+
+    <div *ngIf="eventForm.get('imageUrl')?.value" class="image-preview">
+      <p>Preview:</p>
+      <img [src]="eventForm.get('imageUrl')?.value" alt="Image Preview" />
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!eventForm.invalid">Submit Event</button>
+      <button mat-stroked-button color="accent" type="button" (click)="onBack()">Back</button>
+    </div>
+  </form>
+</div>

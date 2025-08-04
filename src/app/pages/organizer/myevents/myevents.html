@@ -1,0 +1,27 @@
+<div class="events-container" *ngIf="events.length > 0; else noEvents">
+  <div class="page-header">
+    <h2 class="page-title">My Events</h2>
+    <button class="btn back-btn" (click)="onBack()">Back</button>
+  </div>
+
+  <div *ngFor="let event of events" class="event-card">
+    <div class="event-info">
+      <h3 class="event-title">{{ event.title }}</h3>
+      <p class="event-description">{{ event.description }}</p>
+      <p><strong>Start:</strong> {{ event.startTime | date: 'medium' }}</p>
+      <p><strong>End:</strong> {{ event.endTime | date: 'medium' }}</p>
+      <p><strong>Location:</strong> {{ event.location }}</p>
+    </div>
+
+    <div class="event-actions">
+      <button class="btn update-btn" (click)="onUpdate(event)">Update</button>
+      <button class="btn delete-btn" (click)="onDelete(event)">Delete</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #noEvents>
+  <div class="no-events">
+    <p>No events found.</p>
+  </div>
+</ng-template>

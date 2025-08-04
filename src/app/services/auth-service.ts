@@ -38,7 +38,7 @@ export class AuthService {
 
   hasRole(role: string): boolean {
     const token = this.tokenService.decodeAccessToken();
-    return token?.roles?.includes(role);
+    return token?.realm_access?.roles?.includes(role);
   }
 
   logout(): void {

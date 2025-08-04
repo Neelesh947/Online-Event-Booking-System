@@ -1,0 +1,96 @@
+.admin-dashboard {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9fafc;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.dashboard-header .subtitle {
+  color: #7f8c8d;
+  font-size: 1rem;
+}
+
+.metrics-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  flex: 1 1 200px;
+  max-width: 250px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  color: #3498db;
+}
+
+.card-content h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.card-content p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #34495e;
+}
+
+.quick-actions {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.quick-actions h3 {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.action-btn {
+  padding: 0.8rem 1.5rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+  background-color: #2980b9;
+}

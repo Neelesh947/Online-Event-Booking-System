@@ -1,0 +1,163 @@
+/* Container for all events */
+.events-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header container with title and back button */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Page title */
+.page-title {
+  font-size: 2.5rem;
+  color: #333;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Back button style */
+.back-btn {
+  background-color: #2196F3; /* Blue */
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  user-select: none;
+}
+
+.back-btn:hover {
+  background-color: #0b7dda;
+}
+
+/* Individual event card */
+.event-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Event info section */
+.event-info {
+  flex: 1 1 auto;
+  margin-right: 2rem;
+}
+
+.event-title {
+  margin: 0 0 0.4rem 0;
+  font-size: 1.5rem;
+  color: #222;
+  font-weight: 600;
+}
+
+.event-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+
+/* Event date and location */
+.event-info p {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Buttons container */
+.event-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Common button styles */
+.btn {
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  user-select: none;
+}
+
+/* Update button style */
+.update-btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #45a049;
+}
+
+/* Delete button style */
+.delete-btn {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #da190b;
+}
+
+/* No events message */
+.no-events {
+  max-width: 500px;
+  margin: 3rem auto;
+  text-align: center;
+  font-size: 1.25rem;
+  color: #777;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .event-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .event-info {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .event-actions {
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .back-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

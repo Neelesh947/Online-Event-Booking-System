@@ -1,0 +1,48 @@
+<div class="admin-dashboard">
+  <header class="dashboard-header">
+    <h1>🎯 Super Admin Dashboard</h1>
+    <p class="subtitle">Manage everything from one place</p>
+  </header>
+
+  <section class="metrics-cards">
+    <div class="card">
+      <div class="card-icon">📅</div>
+      <div class="card-content">
+        <h2>Events</h2>
+        <p>{{ metrics.totalEvents }}</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎟️</div>
+      <div class="card-content">
+        <h2>Bookings</h2>
+        <p>{{ metrics.totalBookings }}</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">👥</div>
+      <div class="card-content">
+        <h2>Users</h2>
+        <p>{{ metrics.totalUsers }}</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">💰</div>
+      <div class="card-content">
+        <h2>Revenue</h2>
+        <p>₹{{ metrics.totalRevenue | number:'1.0-2' }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="quick-actions">
+    <h3>Quick Actions</h3>
+    <div class="actions">
+      <a routerLink="/admin/categories" class="action-btn">➕ Create Category</a>
+      <a routerLink="/admin/events" class="action-btn">📋 Manage Events</a>
+      <a routerLink="/admin/bookings" class="action-btn">📑 View Bookings</a>
+      <a routerLink="/admin/users" class="action-btn">👥 Manage Users</a>
+      <a routerLink="/admin/reports" class="action-btn">📊 Reports & Analytics</a>
+    </div>
+  </section>
+</div>
